@@ -474,6 +474,26 @@ section {
   gap: 0.4rem;
 }
 
+/* ── Contact ── */
+.contact__inner {
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.contact__desc {
+  font-size: 1.1rem;
+  color: var(--color-muted);
+  margin-bottom: 2.5rem;
+}
+
+.contact__links {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 /* ── Mobile nav ── */
 @media (max-width: 640px) {
   .nav__hamburger {
