@@ -241,6 +241,48 @@ section {
   flex-wrap: wrap;
 }
 
+/* ── What I Build ── */
+.what-i-build {
+  background: var(--color-surface);
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.tile {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 2rem;
+}
+
+.tile__icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.tile__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.tile__body {
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  margin-bottom: 1.25rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .tiles {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ── Mobile nav ── */
 @media (max-width: 640px) {
   .nav__hamburger {
