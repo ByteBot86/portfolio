@@ -447,6 +447,33 @@ section {
   }
 }
 
+/* ── Services ── */
+.services {
+  background: var(--color-surface);
+  padding: 3rem 1.5rem;
+}
+
+.services__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.services__desc {
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  margin-bottom: 1rem;
+  max-width: 560px;
+}
+
+.services__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
 /* ── Mobile nav ── */
 @media (max-width: 640px) {
   .nav__hamburger {
