@@ -529,3 +529,8 @@ section {
     transform: translateY(-7px) rotate(-45deg);
   }
 }
+
+/* ── Scroll offset for fixed nav ── */
+section[id] {
+  scroll-margin-top: var(--nav-height);
+}
