@@ -396,16 +396,19 @@ section {
 }
 
 .project-card__gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.4rem;
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.4rem;
+  scrollbar-width: thin;
 }
 
 .project-card__gallery .thumb {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  object-position: top;
+  height: 100px;
+  width: auto;
+  flex-shrink: 0;
+  object-fit: contain;
+  background: var(--color-surface);
   border-radius: 6px;
   border: 1px solid var(--color-border);
   cursor: zoom-in;
