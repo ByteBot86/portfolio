@@ -553,10 +553,10 @@ section {
 
 .services__inner {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  flex-wrap: wrap;
+  text-align: center;
+  gap: 1rem;
 }
 
 .services__desc {
@@ -570,6 +570,7 @@ section {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
+  justify-content: center;
 }
 
 /* ── Contact ── */
