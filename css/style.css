@@ -377,6 +377,13 @@ section {
   flex: 1;
 }
 
+.project-card__lede {
+  font-size: 0.95rem;
+  color: var(--color-text);
+  font-weight: 500;
+  line-height: 1.55;
+}
+
 .project-card__bullets {
   list-style: none;
   display: flex;
