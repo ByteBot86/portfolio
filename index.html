@@ -158,7 +158,14 @@
 
         <div class="project-card">
           <h3 class="project-card__title">Mooder</h3>
-          <p class="project-card__desc">Team mood tracker for remote managers. Collects anonymous sentiment data from team members and surfaces trends with AI-assisted analysis. Built to solve the invisible problem of remote team wellbeing.</p>
+          <p class="project-card__desc">Team emotion tracker for managers running multiple squads. A manager spins up teams with their own cadence (weekly / bi-weekly), language (PL / EN) and industry context — each cycle generates an anonymous survey link that members fill in three times (start, middle, end). The dashboard renders per-member mood lines plus team average, and an AI layer writes two summaries per cycle: a team-level read of what's driving the mood and an individual paragraph for each anonymous member with concrete signals. Built to make remote team wellbeing observable without 1:1s.</p>
+          <div class="project-card__gallery">
+            <img src="screenshots/mooder/m1.png" alt="Mooder landing" class="thumb" data-full="screenshots/mooder/m1.png" />
+            <img src="screenshots/mooder/m2.png" alt="Teams dashboard" class="thumb" data-full="screenshots/mooder/m2.png" />
+            <img src="screenshots/mooder/m3.png" alt="Team detail" class="thumb" data-full="screenshots/mooder/m3.png" />
+            <img src="screenshots/mooder/m4.png" alt="Cycle report with AI summary" class="thumb" data-full="screenshots/mooder/m4.png" />
+            <img src="screenshots/mooder/m5.png" alt="Team settings" class="thumb" data-full="screenshots/mooder/m5.png" />
+          </div>
           <div class="project-card__tags">
             <span class="tag">Vercel</span>
             <span class="tag">Supabase</span>
@@ -172,12 +179,20 @@
 
         <div class="project-card">
           <h3 class="project-card__title">AI Daily Journal</h3>
-          <p class="project-card__desc">Goal-oriented daily journaling tool for tech professionals. Generates weekly and monthly summaries, tracks progress toward a defined goal, and asks coaching questions to maintain focus and reflection.</p>
+          <p class="project-card__desc">Telegram-first journaling coach for tech professionals working toward a defined 12-month goal. The user chats with a bot daily; the system remembers their goal, values and prior entries, then asks pointed follow-up questions instead of accepting shallow answers. A set of 13 modular n8n workflows handles onboarding, daily reminders, journal capture, memory retrieval, goal updates, weekly processing and monthly summaries. Weekly recaps don't just list events — they call out rhythm patterns, name what got done, and flag the commitments that slipped.</p>
+          <div class="project-card__gallery">
+            <img src="screenshots/dailyjournal/d5%20%281%29.jpg" alt="Telegram weekly summary" class="thumb" data-full="screenshots/dailyjournal/d5%20%281%29.jpg" />
+            <img src="screenshots/dailyjournal/d5%20%282%29.jpg" alt="Telegram coaching conversation" class="thumb" data-full="screenshots/dailyjournal/d5%20%282%29.jpg" />
+            <img src="screenshots/dailyjournal/d3.png" alt="n8n workflows list" class="thumb" data-full="screenshots/dailyjournal/d3.png" />
+            <img src="screenshots/dailyjournal/d1.png" alt="Telegram master router workflow" class="thumb" data-full="screenshots/dailyjournal/d1.png" />
+            <img src="screenshots/dailyjournal/d4.png" alt="Monthly summary workflow" class="thumb" data-full="screenshots/dailyjournal/d4.png" />
+            <img src="screenshots/dailyjournal/d2.png" alt="Onboarding workflow" class="thumb" data-full="screenshots/dailyjournal/d2.png" />
+          </div>
           <div class="project-card__tags">
             <span class="tag">n8n</span>
+            <span class="tag">Telegram</span>
             <span class="tag">AI</span>
             <span class="tag">RAG</span>
-            <span class="tag">Automation</span>
           </div>
           <div class="project-card__links">
             <a href="https://github.com/ByteBot86/techjournaling" target="_blank" rel="noopener" class="btn btn-outline btn--sm">GitHub</a>
@@ -274,6 +289,14 @@
       <p>&copy; Java &amp; Low-Code Developer</p>
     </div>
   </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Close">&times;</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Previous">&#10094;</button>
+    <img class="lightbox__img" id="lightboxImg" alt="" />
+    <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Next">&#10095;</button>
+  </div>
 
   <script src="js/main.js"></script>
 </body>
