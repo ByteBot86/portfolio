@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="KSeF Invoice Classifier AI — a Spring Boot + Spring AI service that proposes journal entries for cost invoices arriving from KSeF." />
+  <title>KSeF Invoice Classifier AI — Java &amp; Low-Code Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="../index.html" class="nav__logo">ByteBot<span class="nav__logo-dot"></span></a>
+      <nav class="nav__links" id="navLinks">
+        <a href="../index.html#what-i-build">About</a>
+        <a href="../index.html#case-studies">Work</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+      <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="detail-hero">
+    <div class="container detail-hero__inner">
+      <a href="../index.html#projects" class="detail-hero__back">&larr; Back to projects</a>
+      <p class="detail-hero__eyebrow">Personal project · Spring Boot + AI</p>
+      <h1 class="detail-hero__title">Automated posting of cost invoices from KSeF</h1>
+      <p class="detail-hero__lede">A service that takes a cost invoice — as JSON, or as the raw XML received from KSeF — and proposes a journal entry together with its reasoning.</p>
+      <div class="detail-hero__tags">
+        <span class="tag">Java 25</span>
+        <span class="tag">Spring Boot 4.1</span>
+        <span class="tag">Spring AI 2.0</span>
+        <span class="tag">OpenAI</span>
+        <span class="tag">Spring Data JPA</span>
+        <span class="tag">TDD</span>
+      </div>
+      <div class="detail-hero__cta">
+        <a href="https://github.com/ByteBot86/Ksef_Tax_classificator_spring_boot_AI" target="_blank" rel="noopener" class="btn btn-primary">View on GitHub</a>
+        <a href="../index.html#projects" class="btn btn-outline">All projects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOR BUSINESS -->
+  <section class="detail">
+    <div class="container detail__inner">
+      <p class="detail__eyebrow">For business</p>
+      <h2 class="detail__title">The problem worth solving changed</h2>
+
+      <div class="detail__note">
+        <p class="detail__note-title">What is KSeF?</p>
+        <p>KSeF (<em>Krajowy System e-Faktur</em> — the National e-Invoicing System) is Poland&#39;s government-run invoicing platform. From February 2026 for large businesses and April 2026 for everyone else, <strong>every B2B invoice issued in Poland has to go through it</strong>.</p>
+        <p>The seller no longer emails a PDF. They submit a structured XML document — schema FA(3), defined by the Ministry of Finance — to the state, which stamps it with an identifier and makes it available to the buyer. In practice: every Polish company now receives all of its cost invoices as the same machine-readable document, from the same place.</p>
+      </div>
+
+      <p>Before writing a line of code I researched what the market looks like after KSeF became mandatory (February and April 2026). The conclusion was counter-intuitive: invoices now arrive as structured FA(3) XML, so <strong>the problem the industry spent fifteen years solving — OCR and field extraction — has simply stopped existing</strong>.</p>
+
+      <p>What did not go away is the posting decision itself: picking an account from <em>this particular client's</em> chart of accounts, classifying the input VAT (full / 50% / none), and deciding whether the cost is deductible for income tax. That is still done by hand.</p>
+
+      <div class="detail__callout">
+        <p>The observation the whole project rests on: in an FA(3) invoice, <strong>the only unstructured field is <code>P_7</code></strong> — the name of the goods or service. And that is precisely the field that decides the account. "VPS hosting service", "Diesel, vehicle WA12345" and "Catering — board meeting" land on three different accounts with three different tax treatments, and no regular expression will tell them apart.</p>
+      </div>
+
+      <h3 class="detail__sub">Running the numbers before starting</h3>
+      <p>Industry sources put the handling time at roughly 15 minutes per document before automation and about 2 minutes after. For an accounting office processing 3,000 invoices a month, three minutes saved per document is <strong>around 150 hours a month — roughly one full-time position</strong>. The model costs a fraction of a cent per invoice, which is negligible at that scale. Only once that arithmetic held did building make sense.</p>
+
+      <h3 class="detail__sub">What was built</h3>
+      <p>Deliberately <strong>not a 100% automation</strong>: an accountant is personally answerable for a journal entry, so the model's proposal never reaches the books unchecked. The system sorts documents itself — confident ones are posted without a human, doubtful ones go to a review queue. The value is measured by a built-in <em>straight-through rate</em>: the share of invoices posted without intervention, which is exactly what converts into hours saved.</p>
+
+      <h3 class="detail__sub">Verified against a live model</h3>
+      <p>Routine invoices (hosting, fuel with its 50% VAT deduction, catering as non-deductible) were posted automatically. An unusual one — "mine tailings reclamation" — was routed to the accountant rather than guessed at. That behaviour is what the entire design is arranged around.</p>
+
+      <figure class="detail__figure">
+        <img src="../screenshots/ksef/k1.png" alt="Swagger UI — the invoice classification endpoint accepting JSON or raw KSeF FA(3) XML" class="thumb" data-full="../screenshots/ksef/k1.png" />
+        <figcaption>One URI serves both representations: the canonical JSON model and the raw KSeF FA(3) XML, selected by <code>Content-Type</code>. The response carries the proposed postings, the effective confidence and any guardrail violations — <code>AUTO_ACCEPTED</code> or <code>NEEDS_REVIEW</code>.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- FOR DEVELOPERS -->
+  <section class="detail detail--alt">
+    <div class="container detail__inner">
+      <p class="detail__eyebrow">For developers</p>
+      <h2 class="detail__title">How it is put together</h2>
+
+      <h3 class="detail__sub">TDD as a way of controlling the model</h3>
+      <p>The project was built alongside an AI assistant (Claude Code), and tests were the instrument for steering it rather than documentation written after the fact. The API contract was pinned down as <strong>23 tests that passed before any classification engine existed</strong>. Every guardrail got its own test before its implementation.</p>
+      <p>The effect: each iteration had a hard acceptance criterion instead of a judgement that something "looks right", and the scope of the next step came from a failing test rather than from drift. The same loop caught two real defects during the session — an API message whose number formatting depended on the server locale, and a document held for review that still reported <code>confidence: 1.0</code> — both now covered by regression tests.</p>
+
+      <h3 class="detail__sub">Architecture</h3>
+      <p><code>InvoiceClassifier</code> is a port, so the orchestration, the guardrails and the entire HTTP surface are testable without touching a model provider: <strong>89 tests run with no API key and no network</strong>.</p>
+      <pre class="detail__flow">InvoiceCommand → AccountingContext → InvoiceClassifier (LLM)
+              → PostingValidator → ConfidencePolicy → persist + audit</pre>
+
+      <h3 class="detail__sub">Grounding and guardrails</h3>
+      <p>The client's chart of accounts is injected into the prompt as a closed list, so the model selects rather than invents. Independently of that, <strong>seven deterministic rules</strong> re-check the answer against facts the application already knows:</p>
+      <ul class="detail__list">
+        <li>whether the account exists and is postable</li>
+        <li>whether the amounts add up</li>
+        <li>whether the VAT rate matches <code>P_12</code></li>
+        <li>whether a 50% deduction appeared outside vehicle costs</li>
+        <li>whether entertainment was marked as tax deductible</li>
+      </ul>
+      <p>A violation blocks auto-acceptance <strong>regardless of the confidence the model claimed</strong> — an LLM's self-assessment is treated as one input, deterministically penalised, never as evidence. An accountant's correction passes through the same rules.</p>
+
+      <h3 class="detail__sub">Engineering details</h3>
+      <ul class="detail__list">
+        <li>The FA(3) adapter reads ~14 nodes via XPath, matching on local name regardless of namespace — the URI changes with every schema revision; the element names, which come from the VAT act, do not</li>
+        <li>One URI serves both JSON and XML through <code>Content-Type</code> negotiation</li>
+        <li>Resolved a classpath conflict where <code>openai-java-core</code> and springdoc each ship the same Swagger annotation package in different versions, which broke OpenAPI document generation</li>
+      </ul>
+
+      <h3 class="detail__sub">Stack</h3>
+      <div class="detail__stack">
+        <span class="tag">Java 25</span>
+        <span class="tag">Spring Boot 4.1</span>
+        <span class="tag">Spring AI 2.0</span>
+        <span class="tag">OpenAI gpt-4.1-mini</span>
+        <span class="tag">temperature 0.0</span>
+        <span class="tag">Spring Data JPA</span>
+        <span class="tag">H2</span>
+        <span class="tag">springdoc-openapi 3</span>
+        <span class="tag">JUnit 5</span>
+        <span class="tag">AssertJ</span>
+        <span class="tag">Mockito</span>
+      </div>
+
+      <h3 class="detail__sub">Deliberately out of scope</h3>
+      <p>Documented as such, rather than left unsaid:</p>
+      <ul class="detail__list">
+        <li>learning rules from accountants' corrections</li>
+        <li>integration with the KSeF 2.0 API</li>
+        <li>the VAT treatment of catering and accommodation under art. 88</li>
+        <li>netting correction invoices against the original</li>
+        <li>authentication</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container contact__inner">
+      <h2 class="section-title">Get In Touch</h2>
+      <p class="contact__desc">Open to new opportunities and selected freelance projects.<br>Feel free to reach out via LinkedIn.</p>
+      <div class="contact__links">
+        <a href="https://www.linkedin.com/in/konrad-bielecki-abbaa4133/" target="_blank" rel="noopener" class="btn btn-primary">Contact on LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; Java &amp; Low-Code Developer</p>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Close">&times;</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Previous">&#10094;</button>
+    <img class="lightbox__img" id="lightboxImg" alt="" />
+    <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Next">&#10095;</button>
+  </div>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

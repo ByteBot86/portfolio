@@ -664,3 +664,224 @@ section {
 section[id] {
   scroll-margin-top: var(--nav-height);
 }
+
+/* ── Project detail page ── */
+.detail-hero {
+  padding-top: calc(var(--nav-height) + 4rem);
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.detail-hero__inner {
+  max-width: 800px;
+}
+
+.detail-hero__back {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-muted);
+  margin-bottom: 1.5rem;
+}
+
+.detail-hero__back:hover {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.detail-hero__eyebrow {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  margin-bottom: 0.75rem;
+}
+
+.detail-hero__title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.detail-hero__lede {
+  font-size: 1.125rem;
+  color: var(--color-muted);
+  margin-bottom: 1.5rem;
+}
+
+.detail-hero__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-bottom: 1.75rem;
+}
+
+.detail-hero__cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.detail {
+  padding: 3.5rem 1.5rem;
+}
+
+.detail--alt {
+  background: var(--color-surface);
+}
+
+.detail__inner {
+  max-width: 800px;
+}
+
+.detail__eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  margin-bottom: 0.75rem;
+}
+
+.detail__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.detail__sub {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 2rem 0 0.75rem;
+}
+
+.detail__inner p {
+  color: var(--color-muted);
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+.detail__inner p strong,
+.detail__inner li strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.detail__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.detail__list li {
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  padding-left: 1.2rem;
+  position: relative;
+  line-height: 1.6;
+}
+
+.detail__list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-size: 0.85rem;
+  top: 2px;
+}
+
+.detail__callout {
+  border-left: 3px solid var(--color-accent);
+  background: var(--color-accent-light);
+  border-radius: 0 8px 8px 0;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.detail__callout p:last-child {
+  margin-bottom: 0;
+}
+
+.detail__flow {
+  background: var(--color-text);
+  color: #e5e7eb;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  overflow-x: auto;
+  font-family: ui-monospace, 'Cascadia Code', Consolas, monospace;
+  font-size: 0.82rem;
+  line-height: 1.8;
+  margin: 1.5rem 0;
+}
+
+.detail__figure {
+  margin: 1.5rem 0 0;
+}
+
+.detail__figure img {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  cursor: zoom-in;
+  width: 100%;
+}
+
+.detail__figure figcaption {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  margin-top: 0.6rem;
+}
+
+.detail__stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.detail__inner code {
+  font-family: ui-monospace, 'Cascadia Code', Consolas, monospace;
+  font-size: 0.88em;
+  background: var(--color-accent-light);
+  color: var(--color-accent);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}
+
+.detail__flow code {
+  background: none;
+  padding: 0;
+}
+
+@media (max-width: 640px) {
+  .detail-hero {
+    padding-top: calc(var(--nav-height) + 2.5rem);
+  }
+}
+
+.detail__note {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 2rem;
+}
+
+.detail--alt .detail__note {
+  background: var(--color-surface);
+}
+
+.detail__note-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text) !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.detail__note p:last-child {
+  margin-bottom: 0;
+}

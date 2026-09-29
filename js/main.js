@@ -51,7 +51,7 @@ function step(delta) {
   showCurrent();
 }
 
-document.querySelectorAll('.project-card__gallery').forEach(gallery => {
+document.querySelectorAll('.project-card__gallery, .detail__figure').forEach(gallery => {
   gallery.querySelectorAll('.thumb').forEach((thumb, idx) => {
     thumb.addEventListener('click', () => openLightbox(gallery, idx));
   });
