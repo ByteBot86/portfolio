@@ -370,6 +370,21 @@ section {
   font-weight: 700;
 }
 
+.project-card__link {
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.project-card__link:hover {
+  text-decoration: none;
+}
+
+.project-card__link:hover .project-card__title {
+  color: var(--color-accent);
+}
+
 .project-card__desc {
   font-size: 0.9rem;
   color: var(--color-muted);
@@ -827,6 +842,12 @@ section[id] {
   border-radius: 8px;
   cursor: zoom-in;
   width: 100%;
+}
+
+.detail__figure--portrait img {
+  display: block;
+  max-width: 420px;
+  margin: 0 auto;
 }
 
 .detail__figure figcaption {

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Smart CO₂ sensor — an ESP32-S3 IoT device that monitors indoor air quality, logs it to InfluxDB Cloud and sends push alerts when it is time to ventilate." />
+  <title>Smart CO₂ Sensor (IoT) — Java &amp; Low-Code Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="../index.html" class="nav__logo">ByteBot<span class="nav__logo-dot"></span></a>
+      <nav class="nav__links" id="navLinks">
+        <a href="../index.html#what-i-build">About</a>
+        <a href="../index.html#case-studies">Work</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+      <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="detail-hero">
+    <div class="container detail-hero__inner">
+      <a href="../index.html#projects" class="detail-hero__back">&larr; Back to projects</a>
+      <p class="detail-hero__eyebrow">Personal project · IoT</p>
+      <h1 class="detail-hero__title">Smart CO₂ sensor: indoor air quality monitoring</h1>
+      <p class="detail-hero__lede">An IoT device that measures CO₂, temperature and humidity in a room in real time and sends a notification to your phone when it is time to open a window. Readings go to the cloud, and a dashboard charts them so you can see how the air quality changes over time.</p>
+      <div class="detail-hero__tags">
+        <span class="tag">ESP32-S3</span>
+        <span class="tag">C++ (Arduino)</span>
+        <span class="tag">Sensirion SCD40</span>
+        <span class="tag">InfluxDB Cloud</span>
+        <span class="tag">ntfy.sh</span>
+      </div>
+      <div class="detail-hero__cta">
+        <a href="https://github.com/ByteBot86/co2_temperature_iot_solution" target="_blank" rel="noopener" class="btn btn-primary">View on GitHub</a>
+        <a href="../index.html#projects" class="btn btn-outline">All projects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="detail">
+    <div class="container detail__inner">
+      <p class="detail__eyebrow">How it works</p>
+      <h2 class="detail__title">From sensor to phone notification</h2>
+
+      <ul class="detail__list">
+        <li>The <strong>Sensirion SCD40</strong> sensor measures CO₂, temperature and humidity every 5 seconds.</li>
+        <li>The <strong>ESP32-S3</strong> microcontroller averages the readings and sends them over WiFi to <strong>InfluxDB Cloud</strong> every 30–60 seconds.</li>
+        <li>An InfluxDB dashboard shows the CO₂ and temperature history.</li>
+        <li>When CO₂ goes above <strong>1200 ppm</strong>, a push notification arrives on the phone via <strong>ntfy.sh</strong>. The alert has hysteresis: it only clears once CO₂ drops below 1000 ppm, so it doesn&#39;t spam you. If the air is still bad, a reminder comes every 30 minutes.</li>
+      </ul>
+
+      <pre class="detail__flow">SCD40 (I2C, every 5 s) → ESP32-S3 (averaging) → WiFi / HTTPS
+        → InfluxDB Cloud → dashboard
+        → ntfy.sh → push notification (CO₂ &gt; 1200 ppm)</pre>
+
+      <figure class="detail__figure detail__figure--portrait">
+        <img src="../screenshots/iot/i1.jpg" alt="ESP32-S3 development board wired to a Sensirion SCD40 CO₂ sensor on a breadboard" class="thumb" data-full="../screenshots/iot/i1.jpg" />
+        <figcaption>The hardware: an ESP32-S3-DevKit board connected over I2C (SDA/SCL) to the SCD40 sensor module.</figcaption>
+      </figure>
+
+      <figure class="detail__figure">
+        <img src="../screenshots/iot/i2.png" alt="InfluxDB Cloud dashboard showing CO₂ and humidity over the past 6 hours" class="thumb" data-full="../screenshots/iot/i2.png" />
+        <figcaption>InfluxDB Cloud dashboard with six hours of CO₂ and humidity readings, refreshed every 60 seconds.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- FOR DEVELOPERS -->
+  <section class="detail detail--alt">
+    <div class="container detail__inner">
+      <p class="detail__eyebrow">For developers</p>
+      <h2 class="detail__title">Technical challenges</h2>
+
+      <ul class="detail__list">
+        <li><strong>I2C bus diagnostics:</strong> separate tools to scan device addresses and check the SDA/SCL line levels.</li>
+        <li><strong>Secure communication:</strong> TLS certificate validation instead of <code>setInsecure()</code>, so the API token never travels over an unverified connection.</li>
+        <li><strong>Weak WiFi signal:</strong> the device reconnects to the network on its own.</li>
+        <li><strong>Alerting in firmware, not in the cloud:</strong> it doesn&#39;t depend on paid InfluxDB features.</li>
+      </ul>
+
+      <h3 class="detail__sub">Stack</h3>
+      <div class="detail__stack">
+        <span class="tag">ESP32-S3</span>
+        <span class="tag">C++ (Arduino)</span>
+        <span class="tag">I2C</span>
+        <span class="tag">WiFi</span>
+        <span class="tag">NTP</span>
+        <span class="tag">HTTPS + TLS validation</span>
+        <span class="tag">InfluxDB Cloud (line protocol)</span>
+        <span class="tag">ntfy.sh</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container contact__inner">
+      <h2 class="section-title">Get In Touch</h2>
+      <p class="contact__desc">Open to new opportunities and selected freelance projects.<br>Feel free to reach out via LinkedIn.</p>
+      <div class="contact__links">
+        <a href="https://www.linkedin.com/in/konrad-bielecki-abbaa4133/" target="_blank" rel="noopener" class="btn btn-primary">Contact on LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; Java &amp; Low-Code Developer</p>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Close">&times;</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Previous">&#10094;</button>
+    <img class="lightbox__img" id="lightboxImg" alt="" />
+    <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Next">&#10095;</button>
+  </div>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

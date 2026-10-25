@@ -265,6 +265,34 @@
           </div>
         </div>
 
+        <div class="project-card">
+          <a href="projects/iot.html" class="project-card__link">
+            <h3 class="project-card__title">IoT: CO₂ Air Quality Monitor</h3>
+            <p class="project-card__lede">A small device that measures CO₂, temperature and humidity in a room, sends the readings to the cloud and sends a push notification to your phone when you need to open a window.</p>
+          </a>
+          <ul class="project-card__bullets">
+            <li>ESP32-S3 + Sensirion SCD40 sensor, readings every 5 s, uploaded to InfluxDB Cloud</li>
+            <li>Live dashboard shows how the air quality changes over time</li>
+            <li>Push alert above 1200 ppm with hysteresis, so it doesn&#39;t spam you</li>
+            <li>TLS-verified HTTPS, and it reconnects to WiFi by itself</li>
+          </ul>
+          <div class="project-card__gallery">
+            <img src="screenshots/iot/i1.jpg" alt="ESP32-S3 board wired to an SCD40 CO₂ sensor on a breadboard" class="thumb" data-full="screenshots/iot/i1.jpg" />
+            <img src="screenshots/iot/i2.png" alt="InfluxDB dashboard — CO₂ and humidity over 6 hours" class="thumb" data-full="screenshots/iot/i2.png" />
+          </div>
+          <div class="project-card__tags">
+            <span class="tag">ESP32-S3</span>
+            <span class="tag">C++</span>
+            <span class="tag">InfluxDB</span>
+            <span class="tag">ntfy.sh</span>
+            <span class="tag">IoT</span>
+          </div>
+          <div class="project-card__links">
+            <a href="https://github.com/ByteBot86/co2_temperature_iot_solution" target="_blank" rel="noopener" class="btn btn-outline btn--sm">GitHub</a>
+            <a href="projects/iot.html" class="btn btn-primary btn--sm">Details &rarr;</a>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
